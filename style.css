@@ -4,6 +4,15 @@
     --third-color: rgb(15, 0, 103);
     --bg-color:rgb(234, 234, 234);
 }
+::-webkit-scrollbar{
+    width: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--third-color); /* scrollbar color*/
+}
+::-webkit-scrollbar-track {
+    background-color: var(--main-color); /* background color*/
+  }
 body{
     margin: 0px;
     padding: 0px;
@@ -25,6 +34,7 @@ body{
     color: var(--second-color);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    border-bottom: 1px solid var(--third-color);
 }
 .header div{
     padding-left: 5rem;
@@ -42,20 +52,29 @@ body{
     font-size: 1rem;
     font-weight: bold;
     height: 3rem;
-    width: 10rem;
+    width: 11rem;
     border-radius: 10px;
     color: var(--second-color);
     background-color: var(--main-color);
     border: 2px solid var(--second-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 .header div button:hover{
-    color: var(--third-color);
-    background-color: var(--bg-color);
-    border: 4px solid var(--third-color);
+    color: var(--bg-color);
+    background-color: rgb(142, 142, 142);
+    border: 3px inset var(--third-color);
     padding: 0px;
+    font-weight: 700;
 }
-
+.header div button img{
+    height: 1.3rem;
+}
 .main{
+    font-weight: 900;
+    font-size: 1rem;
     padding: 2rem;
     display: grid;
     grid-template-rows: auto 1fr;
@@ -69,13 +88,57 @@ body{
     justify-content: center;
 }
 .container .card {
-    height: 400px;
+    max-width: 500;
+    height: 300px;
     background-color: rgb(212, 212, 212);
     border-radius: 10px;
     border: 3px solid var(--main-color);
     border-left: 5px solid var(--second-color);
     border-bottom: 5px solid var(--third-color);
-    padding: 1rem;
+    padding: 1rem 3rem;
+    display: grid;
+    gap: 1rem;
+}
+.card .bookTitle{
+    font-size: 2.2rem;
+    justify-self: center;
+}
+.card .author{
+    font-size: 1.5rem;
+}
+.card .pages{
+    justify-self: end;
+    color: rgb(58, 57, 57);
+}
+.card .progress{
+    justify-self: center;
+    color: rgb(58, 57, 57);
+}
+.card .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: .8rem;
+}
+.card .buttons button{
+    border-radius: 10px;
+    border: 1px solid var(--second-color);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--second-color);
+}
+.card .buttons .read{
+    background-color: rgb(139, 255, 189);
+    flex: 1;
+}
+.card .buttons .read:hover{
+    background-color: rgb(79, 255, 155);
+}
+.card .buttons .delete{
+    background-color: rgb(255, 139, 139);
+    flex: 1;
+}
+.card .buttons .delete:hover{
+    background-color: rgb(255, 99, 99);
 }
 /*Container end*/
 
