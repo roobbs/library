@@ -95,18 +95,19 @@ body{
     display: grid;
     gap: 2rem;
 }
+.book-form .form-title{
+    color: rgb(17, 17, 74);
+}
 .book-form .form-row{
     display: grid;
     grid-template-columns: 1fr 2fr;
+    gap: 1rem;
 }
-.book-form input{
+.book-form input, .book-form select {
     border: 1px solid var(--second-color);
     border-radius: 5px;
-}
-.book-form fieldset{
-    border: none;
-    display: flex;
-    justify-content: space-evenly;
+    font-weight: bold;
+    font-size: 1rem;
 }
 .book-form button{
     font-size: 1rem;
@@ -185,6 +186,12 @@ body{
 }
 .card .buttons .read:hover{
     background-color: rgb(79, 255, 155);
+}
+.not-read{
+    background-color: rgb(255, 139, 139);
+}
+.not-read:hover{
+    background-color: rgb(255, 99, 99);
 }
 .card .buttons .delete{
     background-color: rgb(255, 139, 139);

@@ -17,7 +17,7 @@
         <div class="book">These are your books:</div>
         <dialog class="dialog">
             <form action="" method="dialog" class="book-form">
-                <div>Fill this form to add a book!</div>
+                <div class="form-title">Fill this form to add a book!</div>
                 <div class="form-row">
                     <label for="book-name">Name</label>
                     <input type="text" id="book-name" name="book-name" required>
@@ -30,28 +30,23 @@
                     <label for="book-pages">Pages</label>
                     <input type="number" id="book-pages" name="book-pages" required>
                 </div>
-                <fieldset>
-                    <legend>Have you read this book?</legend>
-                    <div>
-                        <label for="read-yes">Yes</label>
-                        <input type="radio" id="read-yes" name="read" value="yes" checked>
-                    </div>
-                    <div>
-                        <label for="read-no">No</label>
-                        <input type="radio" id="read-no" name="read" value="no">
-                    </div>
-                </fieldset>
+                <div class="form-row">
+                    <label for="read">Have you <br>read it?</label>
+                    <select name="read" id="read"> 
+                        <option value="Completed">Completed</option>
+                        <option value="On Progress">On Progress</option>
+                    </select>
+                </div>
                 <div class="btnAddBook">
                     <button class="addBook">Add Book</button>
                     <button class="close">Cancel</button>
                 </div>
             </form>
-            
         </dialog>
         <div class="container">
             <div class="card">
                 <div class="bookTitle">Creativo</div>
-                <div class="author">by Roberto Mtz.</div>
+                <div class="author">by: Roberto Mtz.</div>
                 <div class="pages">Pages: 210</div>
                 <div class="progress">Completed</div>
                 <div class="buttons">

@@ -1,6 +1,4 @@
-//btn to open dialog
-let dialog = document.querySelector(".dialog");
-
+let dialog = document.querySelector(".dialog"); //open dialog
 let btnDialog = document.querySelector(".btnDialog");
 btnDialog.addEventListener("click", () => {
     dialog.showModal();
@@ -9,33 +7,67 @@ let btnClose = document.querySelector(".close");
 btnClose.addEventListener("click", () => {
     dialog.close();
 })
-//
-
-
-
-//library here
-let library = [];
-
+let library = [];                               //library here
 function Book (name,author,pages,read) {
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.read = read;
 }
-function addBook (book) {
-    library.push(book);
+function addBook (name,author,pages,read) {
+    library.push(new Book(name,author,pages,read) );
 }
-
-//example only
-//delete this
-let first = new Book("Book1","author",120, true);
-addBook(first);
-//delete this
-
+let cardContainer=document.querySelector(".container");
 function displayCards(array){
-    for(let i=0; i<=array.length; i++) {
-        //create a div(card)
+    cardContainer.innerHTML="";
+    for(book of array) {
+        let div = document.createElement("div"); //create a div(card)
+        div.classList.add("card");
+        cardContainer.appendChild(div);
         //create div for each element (witch correspondent class)
+        let divName = document.createElement("div");
+        divName.classList.add("bookTitle");
+        div.appendChild(divName);
+        divName.textContent=book.name;
+        let divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        div.appendChild(divAuthor);
+        divAuthor.textContent="by: "+book.author;
+        let divPages = document.createElement("div");
+        divPages.classList.add("pages");
+        div.appendChild(divPages);
+        divPages.textContent="Pages: "+book.pages;
+        let divRead = document.createElement("div");
+        divRead.classList.add("progress");
+        div.appendChild(divRead);
+        divRead.textContent=book.read;
+        let divButtons= document.createElement("div");
+            divButtons.classList.add("buttons")
+            div.appendChild(divButtons);
+            let readBtn = document.createElement("button");
+            divButtons.appendChild(readBtn)
+        if(book.read==="Completed"){
+            readBtn.classList.add("read");
+            readBtn.textContent="Read"
+        } else{
+            readBtn.classList.add("not-read")
+            readBtn.textContent="Not read yet";
+        }
         //assign each array element value to its div
     }
 }
+let bookName = document.querySelector("#book-name"); //form info and submit
+let bookAuthor = document.querySelector("#book-author");
+let bookPages = document.querySelector("#book-pages");
+let bookRead = document.querySelector("#read");
+let submit = document.querySelector(".book-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (event.target.checkValidity()) {
+        dialog.close();
+        addBook(bookName.value,bookAuthor.value,bookPages.value,bookRead.value);
+        displayCards(library);
+        bookName.value="";
+        bookAuthor.value="";
+        bookPages.value="";
+    }   
+});
