@@ -48,11 +48,24 @@ function displayCards(array){
             divButtons.appendChild(readBtn)
         if(book.read==="Completed"){
             readBtn.classList.add("read");
-            readBtn.textContent="Read"
+            readBtn.textContent="Read";
         } else{
             readBtn.classList.add("not-read")
             readBtn.textContent="Not read yet";
         }
+        readBtn.addEventListener("click", () => {
+            if(readBtn.textContent==="Read") {
+                readBtn.textContent="Not read";
+                readBtn.classList.remove("read");
+                readBtn.classList.add("not-read")
+                divRead.textContent="On Progress";
+            } else {
+                readBtn.textContent="Read";
+                readBtn.classList.remove("not-read");
+                readBtn.classList.add("read");
+                divRead.textContent="Completed";
+            }
+        });
         //assign each array element value to its div
     }
 }

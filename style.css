@@ -189,6 +189,7 @@ body{
 }
 .not-read{
     background-color: rgb(255, 139, 139);
+    flex: 1;
 }
 .not-read:hover{
     background-color: rgb(255, 99, 99);
