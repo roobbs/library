@@ -8,11 +8,19 @@ btnClose.addEventListener("click", () => {
     dialog.close();
 })
 let library = [];                               //library here
-function Book (name,author,pages,read) {
+function Book (name,author,pages,read,index) {
     this.name = name;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.index= index;
+    this.changeRead = function(){
+        if(this.read==="Completed") {
+            this.read="On Progress";
+        } else {
+            this.read="Completed";
+        }
+    }
 }
 function addBook (name,author,pages,read) {
     library.push(new Book(name,author,pages,read) );
@@ -20,7 +28,7 @@ function addBook (name,author,pages,read) {
 let cardContainer=document.querySelector(".container");
 function displayCards(array){
     cardContainer.innerHTML="";
-    for(book of array) {
+    for(let i=0; i<library.length; i++) {
         let div = document.createElement("div"); //create a div(card)
         div.classList.add("card");
         cardContainer.appendChild(div);
@@ -28,25 +36,25 @@ function displayCards(array){
         let divName = document.createElement("div");
         divName.classList.add("bookTitle");
         div.appendChild(divName);
-        divName.textContent=book.name;
+        divName.textContent=library[i].name;////////////
         let divAuthor = document.createElement("div");
         divAuthor.classList.add("author");
         div.appendChild(divAuthor);
-        divAuthor.textContent="by: "+book.author;
+        divAuthor.textContent="by: "+library[i].author;//////////
         let divPages = document.createElement("div");
         divPages.classList.add("pages");
         div.appendChild(divPages);
-        divPages.textContent="Pages: "+book.pages;
+        divPages.textContent="Pages: "+library[i].pages;/////////////
         let divRead = document.createElement("div");
         divRead.classList.add("progress");
         div.appendChild(divRead);
-        divRead.textContent=book.read;
-        let divButtons= document.createElement("div");
+        divRead.textContent=library[i].read;///////////////
+        let divButtons= document.createElement("div"); 
             divButtons.classList.add("buttons")
             div.appendChild(divButtons);
-            let readBtn = document.createElement("button");
+        let readBtn = document.createElement("button"); //read btn
             divButtons.appendChild(readBtn)
-        if(book.read==="Completed"){
+        if(library[i].read==="Completed"){/////////////
             readBtn.classList.add("read");
             readBtn.textContent="Read";
         } else{
@@ -54,6 +62,7 @@ function displayCards(array){
             readBtn.textContent="Not read yet";
         }
         readBtn.addEventListener("click", () => {
+            library[i].changeRead();////////////
             if(readBtn.textContent==="Read") {
                 readBtn.textContent="Not read";
                 readBtn.classList.remove("read");
@@ -66,7 +75,15 @@ function displayCards(array){
                 divRead.textContent="Completed";
             }
         });
-        //assign each array element value to its div
+        let deleteBtn = document.createElement("button") //delete btn
+        deleteBtn.classList.add("delete");
+        deleteBtn.textContent="Delete";
+        divButtons.appendChild(deleteBtn);
+        deleteBtn.addEventListener("click", () => {
+            //function to delete book
+            library.splice(i,1);/////////////
+            displayCards(library);
+        });
     }
 }
 let bookName = document.querySelector("#book-name"); //form info and submit
@@ -83,4 +100,13 @@ let submit = document.querySelector(".book-form").addEventListener("submit", (ev
         bookAuthor.value="";
         bookPages.value="";
     }   
-});
+}); 
+
+
+//Optional
+addBook("Creat11","Rob",210,"Completed");
+addBook("Non00","Dev",300,"On Progress");
+addBook("Liv22","Bolita",450,"Completed");
+addBook("Str33","Pan",310,"On Progress");
+displayCards(library);
+//Optional
